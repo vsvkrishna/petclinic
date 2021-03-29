@@ -7,6 +7,13 @@ pipeline {
         maven_goal = 'package'
     }
 	stages {
+		stage('Sonar Scanner') {
+			steps {
+				withSonarQubeEnv(Sonar) {
+    					mvn sonar:sonar
+				}
+			}
+		}
 		stage('Build') {
 			steps {
 				sh "mvn clean $maven_goal"
