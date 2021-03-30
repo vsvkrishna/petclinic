@@ -45,6 +45,6 @@ def notify(status) {
 	emailext (
 		to: 'devops.kphb@gmail.com',
 		subject: "${status} - ${env.JOB_NAME} [${env.BUILD_NUMBER}]",
-		body: "$status - Jenkins job ${env.BUILD_URL}"
+		body: "$status ${env.BUILD_NUMBER} - Jenkins job ${env.BUILD_URL}"
 	)
 }
