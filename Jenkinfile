@@ -3,9 +3,6 @@ pipeline {
 	tools {
 		maven 'M3.6'
 	}
-	environment { 
-        maven_goal = 'package'
-    }
 	stages {
 		stage('Sonar Scanner') {
 			steps {
@@ -16,7 +13,7 @@ pipeline {
 		}
 		stage('Build') {
 			steps {
-				sh "mvn clean $maven_goal"
+				sh "mvn clean package"
 			}
 		}
 		stage('Parallel Stages') {
