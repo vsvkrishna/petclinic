@@ -4,13 +4,13 @@ pipeline {
 		maven 'M3.6'
 	}
 	stages {
-		stage('Sonar Scanner') {
-			steps {
-				withSonarQubeEnv('Sonar') {
-    					sh "mvn sonar:sonar"
-				}
-			}
-		}
+		//stage('Sonar Scanner') {
+		//	steps {
+		//		withSonarQubeEnv('Sonar') {
+    		//			sh "mvn sonar:sonar"
+		//		}
+		//	}
+		//}
 		stage('Build') {
 			steps {
 				sh "mvn clean package"
