@@ -5,12 +5,6 @@ pipeline {
     }
 
     stages {
-    	stage('Checkout') {
-    		steps {
-    			git 'https://github.com/akmaharshi/petclinic.git'
-    		}
-		}
-		
     	stage('Build') {
     		steps {
 				sh "mvn clean package"
