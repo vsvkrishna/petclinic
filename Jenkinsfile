@@ -13,12 +13,16 @@ pipeline {
 
 		stage('Post Build Actions') {
 			parallel {
+				stage('Nexus Upload') {
+					steps {
+						nexusArtifactUploader artifacts: [[artifactId: 'spring-petclinic', classifier: '', file: 'target/petclinic.war', type: 'war']], credentialsId: 'nexusCred', groupId: 'org.springframework.samples', nexusUrl: '3.138.188.192:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'maven-snapshots', version: '4.2.6-SNAPSHOT'
+					}
+				}
 				stage('Archive artifacts') {
 					steps {
 						archiveArtifacts artifacts: "target/*.?ar", followSymlinks: false
 					}
 				}
-
 				stage('Junit') {
 					steps {
 						junit "target/surefire-reports/*.xml"
